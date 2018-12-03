@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import MoviesItem from "./MoviesItem";
 class NewMovies extends Component {
   constructor(props) {
     super(props);
@@ -26,9 +27,9 @@ class NewMovies extends Component {
       (todayMonth === 0 ? todayMonth + 12 : todayMonth) +
       "-" +
       todayDay;
-    
-      let url = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=${monthAgo}&primary_release_date.lte=${today}`;
-    
+
+    let url = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.gte=${monthAgo}&primary_release_date.lte=${today}`;
+
     axios
       .get(url)
       .then(res => res.data.results)
@@ -53,15 +54,17 @@ class NewMovies extends Component {
   }
   render() {
     return (
-        <section>
-            <div className="newMovies">
-                {this.state.movies.map((movie, index) => {
-                    return (
-                        <p key= {index}>{movie.title}</p>
-                    )
-                })}
-            </div>
-        </section>
+      <section>
+        <div className="movies newMovies">
+          <ul className="movies__list">
+            {this.state.movies.map((movie, index) => {
+              return (
+                <MoviesItem key={index} movie={movie} index={index} movies={this.state.movies} />
+              );
+            })}
+          </ul>
+        </div>
+      </section>
     );
   }
 }
