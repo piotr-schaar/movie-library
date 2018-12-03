@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Header from './header/Header';
-import Movies from './movies/Movies';
+import NewMovies from './movies/NewMovies';
 class Home extends Component {
     render() {
         return (
             <div className="container">
                 <Header />
-                <Movies />
+                <NewMovies />
             </div>
         );
     }
