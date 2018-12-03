@@ -22,6 +22,7 @@ class MoviesItem extends Component {
           <div className="movies__info">
             <h3>{movies[index].title}</h3>
             <p>{movies[index].release_date}</p>
+            <p>{movies[index].overview}</p>
           </div>
         </li>
       </Link>

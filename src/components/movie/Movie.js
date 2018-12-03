@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-
+import Header from "../header/Header";
 class Movie extends Component {
   constructor(props) {
     super(props);
@@ -8,12 +8,8 @@ class Movie extends Component {
       isLoaded: false,
       error: null,
       movie: {
-        title:this.title,
-        poster: '',
+        title: this.title,
         genres: [],
-        credits: [],
-        cast: [],
-        crew: []
       }
     };
   }
@@ -27,11 +23,11 @@ class Movie extends Component {
       .then(res => res.data)
       .then(
         result => {
-            console.log(result)
-            const movie = result;
-            this.setState({movie})
+          console.log(result);
+          const movie = result;
+          this.setState({ movie });
           this.setState({
-            isLoaded: true,
+            isLoaded: true
           });
         },
         error => {
@@ -42,19 +38,43 @@ class Movie extends Component {
         }
       );
   }
-  componentDidMount(){
-      this.getData();
+  componentDidMount() {
+    this.getData();
   }
   render() {
     return (
-        <div className="container">
-            <div className="movieSite">
-                <div className="movieSite__poster">
-                    <h3>{this.state.movie.title}</h3>
-                </div>
-            </div>
+      <div className="container">
+        <Header />
+        <div className="movieSite">
+          <div className="poster">
+            <img
+              src={
+                this.state.movie.poster_path === null
+                  ? "http://via.placeholder.com/300x450"
+                  : `https://image.tmdb.org/t/p/w300${
+                      this.state.movie.poster_path
+                    }`
+              }
+              alt={`${this.state.movie.title} poster`}
+              className="movie_poster"
+            />
+          </div>
+          <h2 className="movieSite__title">{this.state.movie.title}</h2>
+          <ul>
+              <li>Rating: {this.state.movie.vote_average}</li>
+              <li>Vote Count: {this.state.movie.vote_count}</li>
+              <li>Genres:{this.state.movie.genres.map((element, index) => {
+                  if(index < this.state.movie.genres.length -1){
+                    return this.state.movie.genres[index].name + ', '
+                  } else {
+                    return this.state.movie.genres[index].name
+                  }
+              })}</li>
+          </ul>
+          <p>{this.state.movie.overview}</p>
         </div>
-    )
+      </div>
+    );
   }
 }
 
