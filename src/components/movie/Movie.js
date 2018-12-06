@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Header from "../header/Header";
+import MovieCast from "./MovieCast";
 class Movie extends Component {
   constructor(props) {
     super(props);
@@ -10,6 +11,9 @@ class Movie extends Component {
       movie: {
         title: this.title,
         genres: [],
+        credits: {
+          cast: []
+        }
       }
     };
   }
@@ -61,17 +65,22 @@ class Movie extends Component {
           </div>
           <h2 className="movieSite__title">{this.state.movie.title}</h2>
           <ul>
-              <li>Rating: {this.state.movie.vote_average}</li>
-              <li>Vote Count: {this.state.movie.vote_count}</li>
-              <li>Genres:{this.state.movie.genres.map((element, index) => {
-                  if(index < this.state.movie.genres.length -1){
-                    return this.state.movie.genres[index].name + ', '
-                  } else {
-                    return this.state.movie.genres[index].name
-                  }
-              })}</li>
+            <li>Rating: {this.state.movie.vote_average}</li>
+            <li>Vote Count: {this.state.movie.vote_count}</li>
+            <li>
+              Genres:
+              {this.state.movie.genres.map((element, index) => {
+                if (index < this.state.movie.genres.length - 1) {
+                  return this.state.movie.genres[index].name + ", ";
+                } else {
+                  return this.state.movie.genres[index].name;
+                }
+              })}
+            </li>
           </ul>
           <p>{this.state.movie.overview}</p>
+
+          <MovieCast cast={this.state.movie.credits.cast} />
         </div>
       </div>
     );
