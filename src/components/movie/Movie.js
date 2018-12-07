@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Header from "../header/Header";
 import MovieCast from "./MovieCast";
+import SearchForm from '../search/SearchForm'
 class Movie extends Component {
   constructor(props) {
     super(props);
@@ -48,6 +49,7 @@ class Movie extends Component {
     return (
       <div className="container">
         <Header />
+        <SearchForm />
         <div className="movieSite">
           <div className="poster">
             <img
