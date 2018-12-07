@@ -27,7 +27,6 @@ class Movie extends Component {
       .then(res => res.data)
       .then(
         result => {
-          console.log(result);
           const movie = result;
           this.setState({ movie });
           this.setState({
