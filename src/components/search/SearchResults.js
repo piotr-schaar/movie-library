@@ -7,7 +7,7 @@ class SearchResults extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
-    document.querySelector(".inputSearch").value = "";
+    
   }
   render() {
     const link = "https://image.tmdb.org/t/p/w300";

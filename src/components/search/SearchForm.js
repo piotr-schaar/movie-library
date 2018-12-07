@@ -1,15 +1,19 @@
 import React, { Component } from "react";
 import axios from "axios";
 import SearchResults from "./SearchResults";
+import { timingSafeEqual } from "crypto";
 class SearchForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       value: "",
-      results: []
+      results: [],
+      showResults: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
+
   }
 
   handleSubmit(e) {
@@ -18,15 +22,17 @@ class SearchForm extends Component {
 
   handleChange(e) {
     const value = e.target.value;
-    const searchResults = document.querySelector(".searchResults");
     this.setState({
       value: value
     });
-    if (value === "") {
-      searchResults.classList.add("hidden");
-    }
     this.getData(value);
   }
+  handleKeyUp() {
+    if (this.state.value === "") {
+      document.getElementById("results").toggleClass("noDisplay") ;
+    } 
+  }
+
   getData(value) {
     const key = "bd5f28af222edabf18f21f9cf5683cca";
     let url = `https://api.themoviedb.org/3/search/movie?api_key=${key}&language=en-US&query=${value}&page=1&include_adult=false`;
@@ -47,7 +53,9 @@ class SearchForm extends Component {
           type="text"
           value={this.state.value}
           onChange={this.handleChange}
-          className= "inputSearch"
+          onKeyUp={this.handleKeyUp}
+          className="inputSearch"
+          id="input"
         />
         <SearchResults value={this.state.value} results={this.state.results} />
       </form>
