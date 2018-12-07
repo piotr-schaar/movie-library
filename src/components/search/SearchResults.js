@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class SearchResults extends Component {
   constructor(props) {
@@ -6,7 +7,7 @@ class SearchResults extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
-    
+    document.querySelector(".inputSearch").value = "";
   }
   render() {
     const link = "https://image.tmdb.org/t/p/w300";
@@ -17,18 +18,20 @@ class SearchResults extends Component {
           {this.props.results.map((element, index) => {
             return (
               <li key={index} onClick={this.handleClick}>
-                <img
-                  src={
-                    this.props.results[index].poster_path === null
-                      ? "http://via.placeholder.com/300x450"
-                      : `${link}${this.props.results[index].poster_path}`
-                  }
-                  alt={`${this.props.results[index].title} poster`}
-                  className="resultPoster"
-                />
-                <div>
-                  <p>{this.props.results[index].title}</p>
-                </div>
+                <Link to={`/movie/${this.props.results[index].id}`}>
+                  <img
+                    src={
+                      this.props.results[index].poster_path === null
+                        ? "http://via.placeholder.com/300x450"
+                        : `${link}${this.props.results[index].poster_path}`
+                    }
+                    alt={`${this.props.results[index].title} poster`}
+                    className="resultPoster"
+                  />
+                  <div>
+                    <p>{this.props.results[index].title}</p>
+                  </div>
+                </Link>
               </li>
             );
           })}

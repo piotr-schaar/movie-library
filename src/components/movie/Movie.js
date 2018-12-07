@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Header from "../header/Header";
 import MovieCast from "./MovieCast";
-import SearchForm from '../search/SearchForm'
+import SearchForm from "../search/SearchForm";
 class Movie extends Component {
   constructor(props) {
     super(props);
@@ -44,6 +44,11 @@ class Movie extends Component {
   }
   componentDidMount() {
     this.getData();
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.movie !== this.state.movie) {
+      this.getData();
+    }
   }
   render() {
     return (
