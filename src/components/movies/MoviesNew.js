@@ -58,7 +58,12 @@ class NewMovies extends Component {
           <ul className="movies__list">
             {this.state.movies.map((movie, index) => {
               return (
-                <MoviesItem key={index} movie={movie} index={index} movies={this.state.movies} />
+                <MoviesItem
+                  key={index}
+                  movie={movie}
+                  index={index}
+                  movies={this.state.movies}
+                />
               );
             })}
           </ul>

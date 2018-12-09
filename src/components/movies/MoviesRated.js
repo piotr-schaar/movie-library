@@ -32,7 +32,6 @@ class MoviesRated extends Component {
         })
       }
     )
-    console.log(this.state.movies)
   }
   componentDidMount(){
     this.getData()

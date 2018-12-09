@@ -12,7 +12,6 @@ class SearchForm extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleKeyUp = this.handleKeyUp.bind(this);
-
   }
 
   handleSubmit(e) {
@@ -28,8 +27,8 @@ class SearchForm extends Component {
   }
   handleKeyUp() {
     if (this.state.value === "") {
-      document.getElementById("results").toggleClass("noDisplay") ;
-    } 
+      document.getElementById("results").toggleClass("noDisplay");
+    }
   }
 
   getData(value) {
