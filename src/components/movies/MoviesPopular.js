@@ -13,7 +13,7 @@ class MoviesRated extends Component {
   }
   getData() {
     const key = "bd5f28af222edabf18f21f9cf5683cca";
-    let url = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&certification_country=US&certification=R&sort_by=vote_average.desc`
+    let url = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&sort_by=popularity.desc`
     
     axios 
     .get(url)
@@ -41,7 +41,7 @@ class MoviesRated extends Component {
     return (
       <div className="container">
         <Header />
-        <div className="movies moviesRated">
+        <div className="movies moviesPopular">
           <ul className="movies__list">
             {this.state.movies.map((movie, index) => {
               return (
