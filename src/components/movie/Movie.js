@@ -42,6 +42,7 @@ class Movie extends Component {
         }
       );
   }
+  com
   componentDidMount() {
     this.getData();
   }

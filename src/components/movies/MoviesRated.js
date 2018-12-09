@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import MoviesItem from "./MoviesItem";
+import Header from "../header/Header";
+import axios from "axios";
 class MoviesRated extends Component {
   constructor(props) {
     super(props);
@@ -11,23 +13,48 @@ class MoviesRated extends Component {
   }
   getData() {
     const key = "bd5f28af222edabf18f21f9cf5683cca";
-    let url = `https://api.themoviedb.org/3/discover/movie/?api_key=${key}&language=en-US&certification_country=US&certification=R&sort_by=vote_average.desc`;
+    let url = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&sort_by=popularity.desc`
+    
+    axios 
+    .get(url)
+    .then(res => res.data.results)
+    .then(
+      result => {
+        this.setState({
+          isLoaded:true,
+          movies: result
+        })
+      },
+      error => {
+        this.setState({
+          isLoaded: true,
+          error
+        })
+      }
+    )
+    console.log(this.state.movies)
+  }
+  componentDidMount(){
+    this.getData()
   }
   render() {
     return (
-      <div className="movies newMovies">
-        <ul className="movies__list">
-          {this.state.movies.map((movie, index) => {
-            return (
-              <MoviesItem
-                key={index}
-                movie={movie}
-                index={index}
-                movies={this.state.movies}
-              />
-            );
-          })}
-        </ul>
+      <div className="container">
+        <Header />
+        <div className="movies newMovies">
+          <ul className="movies__list">
+            {this.state.movies.map((movie, index) => {
+              return (
+                <MoviesItem
+                  key={index}
+                  movie={movie}
+                  index={index}
+                  movies={this.state.movies}
+                />
+              );
+            })}
+          </ul>
+        </div>
       </div>
     );
   }
