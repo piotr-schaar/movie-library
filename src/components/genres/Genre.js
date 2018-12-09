@@ -4,7 +4,7 @@ class Genre extends Component {
     render() {
         return (
             <div>
-                
+               {this.props.location.param}
             </div>
         );
     }

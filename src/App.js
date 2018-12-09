@@ -16,7 +16,7 @@ class App extends Component {
           <Route path={"/rated-movies"} component={MoviesRated} />
           <Route path={"/popular-movies"} component={MoviesPopular} />
           <Route path={"/genres"} component={Genres} />
-          <Route path={"/genres/:id"} component={Genre} />
+          <Route path={"/genre/:name"} component={Genre} />
         </Switch>
       </BrowserRouter>
     );
