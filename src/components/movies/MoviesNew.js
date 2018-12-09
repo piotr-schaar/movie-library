@@ -11,7 +11,7 @@ class NewMovies extends Component {
     };
   }
 
-  getDataNewMovies() {
+  getData() {
     const key = "bd5f28af222edabf18f21f9cf5683cca";
 
     let todayDate = new Date();
@@ -49,7 +49,7 @@ class NewMovies extends Component {
   }
 
   componentDidMount() {
-    this.getDataNewMovies();
+    this.getData();
   }
   render() {
     return (
