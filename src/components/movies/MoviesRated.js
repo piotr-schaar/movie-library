@@ -13,7 +13,7 @@ class MoviesRated extends Component {
   }
   getData() {
     const key = "bd5f28af222edabf18f21f9cf5683cca";
-    let url = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&certification_country=US&certification=R&sort_by=vote_average.desc`
+    let url = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&certification_country=US&certification=R&sort_by=vote_average.desc&vote_count.gte=10000`
     
     axios 
     .get(url)

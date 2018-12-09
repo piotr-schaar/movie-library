@@ -13,7 +13,7 @@ class Genre extends Component {
   getData() {
     const key = "bd5f28af222edabf18f21f9cf5683cca";
     let id = window.location.pathname.split("/").pop();
-    let url = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&with_genres=${id}&sort_by=vote_average.desc&vote_count.gte=10`;
+    let url = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&with_genres=${id}&sort_by=vote_average.desc&vote_count.gte=1000`;
     axios
       .get(url)
       .then(res => res.data.results)
