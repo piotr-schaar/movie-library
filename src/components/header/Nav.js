@@ -7,7 +7,10 @@ class Nav extends Component {
       <ul>
         <li>
           <Link to={"/rated-movies"}>Top Rated</Link>
-          <Link to={"/popular-movies"}>Popular</Link> 
+          <Link to={"/popular-movies"}>Popular</Link>
+          <Link to={"/genres"}>
+            Genres
+          </Link> 
         </li>
       </ul>
     );
