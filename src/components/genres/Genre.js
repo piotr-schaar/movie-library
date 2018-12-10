@@ -6,7 +6,6 @@ class Genre extends Component {
   constructor(props) {
     super();
     this.state = {
-      genre: "",
       movies: []
     };
   }

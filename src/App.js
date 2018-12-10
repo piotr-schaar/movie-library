@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import Movie from "./components/movie/Movie";
 import MoviesRated from "./components/movies/MoviesRated";
 import MoviesPopular from "./components/movies/MoviesPopular";
+import MoviesNew from './components/movies/MoviesNew';
 import Genres from "./components/genres/Genres";
 import Genre from "./components/genres/Genre";
 class App extends Component {
@@ -14,9 +15,11 @@ class App extends Component {
           <Route exact path={"/"} component={Home} />
           <Route path={"/movie/:id"} component={Movie} />
           <Route path={"/rated-movies"} component={MoviesRated} />
+          <Route path={"/hot-movies"} component={MoviesNew} />
           <Route path={"/popular-movies"} component={MoviesPopular} />
           <Route path={"/genres"} component={Genres} />
           <Route path={"/genre/:name"} component={Genre} />
+
         </Switch>
       </BrowserRouter>
     );

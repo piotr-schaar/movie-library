@@ -13,28 +13,28 @@ class MoviesRated extends Component {
   }
   getData() {
     const key = "bd5f28af222edabf18f21f9cf5683cca";
-    let url = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&sort_by=popularity.desc`
-    
-    axios 
-    .get(url)
-    .then(res => res.data.results)
-    .then(
-      result => {
-        this.setState({
-          isLoaded:true,
-          movies: result
-        })
-      },
-      error => {
-        this.setState({
-          isLoaded: true,
-          error
-        })
-      }
-    )
+    let url = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&sort_by=popularity.desc`;
+
+    axios
+      .get(url)
+      .then(res => res.data.results)
+      .then(
+        result => {
+          this.setState({
+            isLoaded: true,
+            movies: result
+          });
+        },
+        error => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      );
   }
-  componentDidMount(){
-    this.getData()
+  componentDidMount() {
+    this.getData();
   }
   render() {
     return (

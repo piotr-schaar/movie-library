@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
 import MoviesItem from "./MoviesItem";
+import Header from "../header/Header";
 class NewMovies extends Component {
   constructor(props) {
     super(props);
     this.state = {
       error: null,
       isLoaded: true,
-      movies: []
+      movies: [],
+      isHome: false
     };
   }
 
@@ -19,7 +21,6 @@ class NewMovies extends Component {
     let todayMonth = todayDate.getMonth();
     let todayDay = todayDate.getDate();
     let today = todayYear + "-" + (todayMonth + 1) + "-" + todayDay;
-
     let monthAgo =
       (todayMonth === 0 ? todayYear - 1 : todayYear) +
       "-" +
@@ -50,12 +51,25 @@ class NewMovies extends Component {
 
   componentDidMount() {
     this.getData();
+    if (this.props.isHome === true) {
+      this.setState({
+        isHome: true
+      });
+    }
+   
   }
+ 
   render() {
+    let header = () => {
+      if (this.state.isHome === false) {
+        return <Header />;
+      }
+    };
     return (
       <section>
         <div className="movies newMovies">
           <ul className="movies__list">
+            {header()}
             {this.state.movies.map((movie, index) => {
               return (
                 <MoviesItem

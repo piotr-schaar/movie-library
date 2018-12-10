@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {Link} from "react-router-dom";
-import Nav from "./Nav";
+import HeaderNav from "./HeaderNav/HeaderNav";
 
 class Header extends Component {
   render() {
@@ -9,7 +9,7 @@ class Header extends Component {
         <Link to={"/"}>
           <h2>Movie-library</h2>
         </Link>
-        <Nav />
+        <HeaderNav />
       </header>
     );
   }
