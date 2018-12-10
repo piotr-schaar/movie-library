@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import Header from "../header/Header";
 import { Link } from "react-router-dom";
+import { ContainWrapper } from "../../layout/wrappers";
+import Layout from "../../layout/Layout";
 
 class Genres extends Component {
   constructor(props) {
@@ -40,22 +42,27 @@ class Genres extends Component {
   }
   render() {
     return (
-      <div className="container">
-        <Header />
-        <div className="genres">
-          <ul className="genres__list">
-            {this.state.genres.map((genre, index) => {
-              return (
-                <Link to={`/genre/${this.state.genres[index].id}`} key={index}>
-                  <li className="genres__item">
-                    <p>{this.state.genres[index].name}</p>
-                  </li>
-                </Link>
-              );
-            })}
-          </ul>
-        </div>
-      </div>
+      <Layout>
+        <ContainWrapper>
+          <Header />
+          <div className="genres">
+            <ul className="genres__list">
+              {this.state.genres.map((genre, index) => {
+                return (
+                  <Link
+                    to={`/genre/${this.state.genres[index].id}`}
+                    key={index}
+                  >
+                    <li className="genres__item">
+                      <p>{this.state.genres[index].name}</p>
+                    </li>
+                  </Link>
+                );
+              })}
+            </ul>
+          </div>
+        </ContainWrapper>
+      </Layout>
     );
   }
 }

@@ -3,6 +3,8 @@ import axios from "axios";
 import MoviesItem from "./MoviesItem";
 import Header from "../header/Header";
 import Layout from "../../layout/Layout";
+import {MovieList} from "../lists/lists";
+import {ContainWrapper} from '../../layout/wrappers'
 class NewMovies extends Component {
   constructor(props) {
     super(props);
@@ -67,10 +69,11 @@ class NewMovies extends Component {
     };
     return (
       <Layout>
-        <section>
+        {header()}
+
+        <ContainWrapper>
           <div className="movies newMovies">
-            <ul className="movies__list">
-              {header()}
+            <MovieList>
               {this.state.movies.map((movie, index) => {
                 return (
                   <MoviesItem
@@ -81,9 +84,9 @@ class NewMovies extends Component {
                   />
                 );
               })}
-            </ul>
+            </MovieList>
           </div>
-        </section>
+        </ContainWrapper>
       </Layout>
     );
   }

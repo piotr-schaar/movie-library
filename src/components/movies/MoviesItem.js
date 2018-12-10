@@ -1,17 +1,37 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { MovieListItem } from "../lists/lists";
+import styled from "styled-components";
 
+const MovieListItemInfo = styled.div`
+  padding: 25px;
+`;
+
+const H3 = styled.h3`
+  font-size: 3em;
+  color: ${({ theme }) => theme.colors.primary};
+  font-weight: ${({ theme }) => theme.font.bold}
+
+`;
+
+const Para = styled.p`
+  padding: 10px 0;
+  line-height: 2rem;
+  font-weight: ${({ theme }) => theme.font.regular}
+`;
+
+const Img = styled.img`
+  width: 300px;
+  height: 400px;
+`;
 class MoviesItem extends Component {
   render() {
     let index = this.props.index;
     let movies = this.props.movies;
     return (
-      <Link
-        to={`/movie/${movies[index].id}`}
-        key={index} 
-      >
-        <li className="movies__item">
-          <img
+      <MovieListItem>
+        <Link to={`/movie/${movies[index].id}`} key={index}>
+          <Img
             src={
               movies[index].poster_path === null
                 ? "http://via.placeholder.com/300x450"
@@ -19,13 +39,13 @@ class MoviesItem extends Component {
             }
             alt={``}
           />
-          <div className="movies__info">
-            <h3>{movies[index].title}</h3>
-            <p>{movies[index].release_date}</p>
-            <p>{movies[index].overview}</p>
-          </div>
-        </li>
-      </Link>
+          <MovieListItemInfo>
+            <H3>{movies[index].title}</H3>
+            <Para>Release date: {movies[index].release_date}</Para>
+            <Para>{movies[index].overview}</Para>
+          </MovieListItemInfo>
+        </Link>
+      </MovieListItem>
     );
   }
 }

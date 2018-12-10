@@ -4,6 +4,8 @@ import Header from "../header/Header";
 import MovieCast from "./MovieCast";
 import SearchForm from "../search/SearchForm";
 import Layout from "../../layout/Layout";
+import { ContainWrapper } from "../../layout/wrappers";
+
 class Movie extends Component {
   constructor(props) {
     super(props);
@@ -57,8 +59,7 @@ class Movie extends Component {
       <>
         <Layout>
           <Header />
-          <SearchForm />
-          <div className="movieSite">
+          <ContainWrapper>
             <div className="poster">
               <img
                 src={
@@ -90,7 +91,7 @@ class Movie extends Component {
             <p>{this.state.movie.overview}</p>
 
             <MovieCast cast={this.state.movie.credits.cast} />
-          </div>
+          </ContainWrapper>
         </Layout>
       </>
     );

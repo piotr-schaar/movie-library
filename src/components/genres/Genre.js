@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Header from "../header/Header";
 import MovieItem from "../movies/MoviesItem";
 import axios from "axios";
+import { ContainWrapper } from "../../layout/wrappers";
+import Layout from "../../layout/Layout";
 class Genre extends Component {
   constructor(props) {
     super();
@@ -27,21 +29,23 @@ class Genre extends Component {
   }
   render() {
     return (
-      <div className="container">
+      <Layout>
         <Header />
-        <ul>
-          {this.state.movies.map((movie, index) => {
-            return (
-              <MovieItem
-                index={index}
-                key={index}
-                movie={movie}
-                movies={this.state.movies}
-              />
-            );
-          })}
-        </ul>
-      </div>
+        <ContainWrapper>
+          <ul>
+            {this.state.movies.map((movie, index) => {
+              return (
+                <MovieItem
+                  index={index}
+                  key={index}
+                  movie={movie}
+                  movies={this.state.movies}
+                />
+              );
+            })}
+          </ul>
+        </ContainWrapper>
+      </Layout>
     );
   }
 }

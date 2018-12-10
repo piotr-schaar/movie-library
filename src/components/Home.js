@@ -15,7 +15,7 @@ class Home extends Component {
       <>
         <Layout>
           <Header />
-          <SearchForm />
+          {/* <SearchForm /> */}
           <MoviesNew isHome={this.state.isHome} />
         </Layout>
       </>

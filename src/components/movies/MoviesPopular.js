@@ -3,6 +3,8 @@ import MoviesItem from "./MoviesItem";
 import Header from "../header/Header";
 import axios from "axios";
 import Layout from "../../layout/Layout";
+import {ContainWrapper} from '../../layout/wrappers'
+import {MovieList} from "../lists/lists";
 class MoviesRated extends Component {
   constructor(props) {
     super(props);
@@ -40,10 +42,10 @@ class MoviesRated extends Component {
   render() {
     return (
       <Layout>
-        <div className="container">
+        <ContainWrapper>
           <Header />
           <div className="movies moviesPopular">
-            <ul className="movies__list">
+            <MovieList>
               {this.state.movies.map((movie, index) => {
                 return (
                   <MoviesItem
@@ -54,9 +56,9 @@ class MoviesRated extends Component {
                   />
                 );
               })}
-            </ul>
+            </MovieList>
           </div>
-        </div>
+        </ContainWrapper>
       </Layout>
     );
   }
