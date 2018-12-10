@@ -2,20 +2,23 @@ import React, { Component } from "react";
 import Header from "./header/Header";
 import MoviesNew from "./movies/MoviesNew";
 import SearchForm from "./search/SearchForm";
+import Layout from '../layout/Layout';
 class Home extends Component {
   constructor() {
     super();
     this.state = {
-        isHome: true
+      isHome: true
     };
   }
   render() {
     return (
-      <div className="container">
-        <Header />
-        <SearchForm />
-        <MoviesNew isHome={this.state.isHome} />
-      </div>
+      <>
+        <Layout>
+          <Header />
+          <SearchForm />
+          <MoviesNew isHome={this.state.isHome} />
+        </Layout>
+      </>
     );
   }
 }

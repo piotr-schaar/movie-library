@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import MoviesItem from "./MoviesItem";
 import Header from "../header/Header";
 import axios from "axios";
+import Layout from '../../layout/Layout';
 class MoviesRated extends Component {
   constructor(props) {
     super(props);
@@ -38,23 +39,24 @@ class MoviesRated extends Component {
   }
   render() {
     return (
-      <div className="container">
-        <Header />
-        <div className="movies moviesRated">
-          <ul className="movies__list">
-            {this.state.movies.map((movie, index) => {
-              return (
-                <MoviesItem
-                  key={index}
-                  movie={movie}
-                  index={index}
-                  movies={this.state.movies}
-                />
-              );
-            })}
-          </ul>
-        </div>
+      <Layout>      <div className="container">
+      <Header />
+      <div className="movies moviesRated">
+        <ul className="movies__list">
+          {this.state.movies.map((movie, index) => {
+            return (
+              <MoviesItem
+                key={index}
+                movie={movie}
+                index={index}
+                movies={this.state.movies}
+              />
+            );
+          })}
+        </ul>
       </div>
+    </div></Layout>
+
     );
   }
 }

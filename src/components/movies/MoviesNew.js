@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import MoviesItem from "./MoviesItem";
 import Header from "../header/Header";
+import Layout from "../../layout/Layout";
 class NewMovies extends Component {
   constructor(props) {
     super(props);
@@ -56,9 +57,8 @@ class NewMovies extends Component {
         isHome: true
       });
     }
-   
   }
- 
+
   render() {
     let header = () => {
       if (this.state.isHome === false) {
@@ -66,23 +66,25 @@ class NewMovies extends Component {
       }
     };
     return (
-      <section>
-        <div className="movies newMovies">
-          <ul className="movies__list">
-            {header()}
-            {this.state.movies.map((movie, index) => {
-              return (
-                <MoviesItem
-                  key={index}
-                  movie={movie}
-                  index={index}
-                  movies={this.state.movies}
-                />
-              );
-            })}
-          </ul>
-        </div>
-      </section>
+      <Layout>
+        <section>
+          <div className="movies newMovies">
+            <ul className="movies__list">
+              {header()}
+              {this.state.movies.map((movie, index) => {
+                return (
+                  <MoviesItem
+                    key={index}
+                    movie={movie}
+                    index={index}
+                    movies={this.state.movies}
+                  />
+                );
+              })}
+            </ul>
+          </div>
+        </section>
+      </Layout>
     );
   }
 }

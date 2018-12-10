@@ -3,6 +3,7 @@ import axios from "axios";
 import Header from "../header/Header";
 import MovieCast from "./MovieCast";
 import SearchForm from "../search/SearchForm";
+import Layout from "../../layout/Layout";
 class Movie extends Component {
   constructor(props) {
     super(props);
@@ -42,7 +43,7 @@ class Movie extends Component {
         }
       );
   }
-  com
+  com;
   componentDidMount() {
     this.getData();
   }
@@ -53,43 +54,45 @@ class Movie extends Component {
   }
   render() {
     return (
-      <div className="container">
-        <Header />
-        <SearchForm />
-        <div className="movieSite">
-          <div className="poster">
-            <img
-              src={
-                this.state.movie.poster_path === null
-                  ? "http://via.placeholder.com/300x450"
-                  : `https://image.tmdb.org/t/p/w300${
-                      this.state.movie.poster_path
-                    }`
-              }
-              alt={`${this.state.movie.title} poster`}
-              className="movie_poster"
-            />
-          </div>
-          <h2 className="movieSite__title">{this.state.movie.title}</h2>
-          <ul>
-            <li>Rating: {this.state.movie.vote_average}</li>
-            <li>Vote Count: {this.state.movie.vote_count}</li>
-            <li>
-              Genres:
-              {this.state.movie.genres.map((element, index) => {
-                if (index < this.state.movie.genres.length - 1) {
-                  return this.state.movie.genres[index].name + ", ";
-                } else {
-                  return this.state.movie.genres[index].name;
+      <>
+        <Layout>
+          <Header />
+          <SearchForm />
+          <div className="movieSite">
+            <div className="poster">
+              <img
+                src={
+                  this.state.movie.poster_path === null
+                    ? "http://via.placeholder.com/300x450"
+                    : `https://image.tmdb.org/t/p/w300${
+                        this.state.movie.poster_path
+                      }`
                 }
-              })}
-            </li>
-          </ul>
-          <p>{this.state.movie.overview}</p>
+                alt={`${this.state.movie.title} poster`}
+                className="movie_poster"
+              />
+            </div>
+            <h2 className="movieSite__title">{this.state.movie.title}</h2>
+            <ul>
+              <li>Rating: {this.state.movie.vote_average}</li>
+              <li>Vote Count: {this.state.movie.vote_count}</li>
+              <li>
+                Genres:
+                {this.state.movie.genres.map((element, index) => {
+                  if (index < this.state.movie.genres.length - 1) {
+                    return this.state.movie.genres[index].name + ", ";
+                  } else {
+                    return this.state.movie.genres[index].name;
+                  }
+                })}
+              </li>
+            </ul>
+            <p>{this.state.movie.overview}</p>
 
-          <MovieCast cast={this.state.movie.credits.cast} />
-        </div>
-      </div>
+            <MovieCast cast={this.state.movie.credits.cast} />
+          </div>
+        </Layout>
+      </>
     );
   }
 }
