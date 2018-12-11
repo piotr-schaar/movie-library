@@ -5,13 +5,15 @@ import styled from "styled-components";
 
 const MovieListItemInfo = styled.div`
   padding: 25px;
+  position:relative;
 `;
 
 const H3 = styled.h3`
   font-size: 3em;
   color: ${({ theme }) => theme.colors.primary};
   font-weight: ${({ theme }) => theme.font.bold}
-
+  width:75%;
+  padding-bottom: 1rem;
 `;
 
 const Para = styled.p`
@@ -21,9 +23,17 @@ const Para = styled.p`
 `;
 
 const Img = styled.img`
-  width: 300px;
-  height: 400px;
+
 `;
+
+const Rating = styled.div `
+    font-size: 3rem;
+    padding:30px 50px;
+    border: 2px solid ${({theme}) => theme.colors.primary}
+    position:absolute;
+    top:1rem;
+    right:0;
+`
 class MoviesItem extends Component {
   render() {
     let index = this.props.index;
@@ -43,6 +53,7 @@ class MoviesItem extends Component {
             <H3>{movies[index].title}</H3>
             <Para>Release date: {movies[index].release_date}</Para>
             <Para>{movies[index].overview}</Para>
+            <Rating>{movies[index].vote_average}</Rating>
           </MovieListItemInfo>
         </Link>
       </MovieListItem>

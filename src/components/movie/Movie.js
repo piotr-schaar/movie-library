@@ -4,8 +4,40 @@ import Header from "../header/Header";
 import MovieCast from "./MovieCast";
 import SearchForm from "../search/SearchForm";
 import Layout from "../../layout/Layout";
-import { ContainWrapper } from "../../layout/wrappers";
+import styled from "styled-components";
 
+import { ContainWrapper } from "../../layout/wrappers";
+const MovieStyled = styled.div`
+  display: flex;
+`;
+const MovieInfo = styled.div`
+  padding: 25px;
+  position: relative;
+`;
+
+const H3 = styled.h3`
+  font-size: 3em;
+  color: ${({ theme }) => theme.colors.primary};
+  font-weight: ${({ theme }) => theme.font.bold}
+  width:75%;
+  padding-bottom: 1rem;
+`;
+
+const LiStyled = styled.li`
+  padding: 10px 0;
+  line-height: 2rem;
+  font-weight: ${({ theme }) => theme.font.regular};
+`;
+
+const Rating = styled.div`
+    font-size: 3rem;
+    padding:30px 50px;
+    border: 2px solid ${({ theme }) => theme.colors.primary}
+    position:absolute;
+    top:1rem;
+    right:0;
+`;
+const Img = styled.img``;
 class Movie extends Component {
   constructor(props) {
     super(props);
@@ -60,8 +92,8 @@ class Movie extends Component {
         <Layout>
           <Header />
           <ContainWrapper>
-            <div className="poster">
-              <img
+            <MovieStyled>
+              <Img
                 src={
                   this.state.movie.poster_path === null
                     ? "http://via.placeholder.com/300x450"
@@ -72,23 +104,25 @@ class Movie extends Component {
                 alt={`${this.state.movie.title} poster`}
                 className="movie_poster"
               />
-            </div>
-            <h2 className="movieSite__title">{this.state.movie.title}</h2>
-            <ul>
-              <li>Rating: {this.state.movie.vote_average}</li>
-              <li>Vote Count: {this.state.movie.vote_count}</li>
-              <li>
-                Genres:
-                {this.state.movie.genres.map((element, index) => {
-                  if (index < this.state.movie.genres.length - 1) {
-                    return this.state.movie.genres[index].name + ", ";
-                  } else {
-                    return this.state.movie.genres[index].name;
-                  }
-                })}
-              </li>
-            </ul>
-            <p>{this.state.movie.overview}</p>
+              <MovieInfo>
+                <H3>{this.state.movie.title}</H3>
+                <ul>
+                  <Rating>{this.state.movie.vote_average}</Rating>
+                  <LiStyled>Vote Count: {this.state.movie.vote_count}</LiStyled>
+                  <LiStyled>
+                    Genres: <space></space>
+                     {this.state.movie.genres.map((element, index) => {
+                      if (index < this.state.movie.genres.length - 1) {
+                        return this.state.movie.genres[index].name + ", ";
+                      } else {
+                        return this.state.movie.genres[index].name;
+                      }
+                    })}
+                  </LiStyled>
+                </ul>
+                <p>{this.state.movie.overview}</p>
+              </MovieInfo>
+            </MovieStyled>
 
             <MovieCast cast={this.state.movie.credits.cast} />
           </ContainWrapper>

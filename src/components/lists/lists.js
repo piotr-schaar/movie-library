@@ -9,6 +9,6 @@ export const MovieListItem = styled.li`
   a {
     display: flex;
     margin: 2rem 0 2rem 0;
-    align-items:center;
+    align-items:flex-start;
   }
 `;

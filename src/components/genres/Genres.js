@@ -4,7 +4,17 @@ import Header from "../header/Header";
 import { Link } from "react-router-dom";
 import { ContainWrapper } from "../../layout/wrappers";
 import Layout from "../../layout/Layout";
+import styled from "styled-components";
 
+const GenresList = styled.ul `
+  display:flex;
+  flex-wrap:wrap;
+`
+const Genre = styled.li `
+  margin: 10px;
+  padding: 20px;
+  border: 2px solid ${({theme})=> theme.colors.primary}
+`
 class Genres extends Component {
   constructor(props) {
     super(props);
@@ -45,22 +55,20 @@ class Genres extends Component {
       <Layout>
         <ContainWrapper>
           <Header />
-          <div className="genres">
-            <ul className="genres__list">
+            <GenresList>
               {this.state.genres.map((genre, index) => {
                 return (
                   <Link
                     to={`/genre/${this.state.genres[index].id}`}
                     key={index}
                   >
-                    <li className="genres__item">
+                    <Genre>
                       <p>{this.state.genres[index].name}</p>
-                    </li>
+                    </Genre>
                   </Link>
                 );
               })}
-            </ul>
-          </div>
+            </GenresList>
         </ContainWrapper>
       </Layout>
     );
