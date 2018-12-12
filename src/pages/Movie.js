@@ -116,7 +116,7 @@ class Movie extends Component {
                   <Rating>{this.state.movie.vote_average}</Rating>
                   <LiStyled>Vote Count: {this.state.movie.vote_count}</LiStyled>
                   <LiStyled>
-                    Genres: <space />
+                    Genres:
                     {this.state.movie.genres.map((element, index) => {
                       if (index < this.state.movie.genres.length - 1) {
                         return this.state.movie.genres[index].name + ", ";

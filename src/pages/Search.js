@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Header from "../components/header/Header";
 import Layout from '../layout/Layout';
+import SearchForm from '../components/search/SearchForm';
+
 
 class Search extends Component {
     render() {
@@ -8,7 +10,7 @@ class Search extends Component {
             <>
             <Layout>
               <Header />
-                    Searchform
+                <SearchForm ></SearchForm>  
             </Layout>
           </>
         );

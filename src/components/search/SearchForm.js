@@ -1,6 +1,25 @@
 import React, { Component } from "react";
 import axios from "axios";
 import SearchResults from "./SearchResults";
+import styled from "styled-components";
+import { ContainWrapper } from "../../layout/wrappers";
+
+const FormStyled = styled.form`
+  width: 100%;
+`;
+const InputStyled = styled.input`
+  width: 100%;
+  border: none;
+  height: 4rem;
+  font-size: 1.2em;
+  padding-left: 25px;
+  color: ${({ theme }) => theme.colors.primary};
+  font-weight: ${({ theme }) => theme.font.bold};
+  background: none;
+  border-bottom: 2px solid ${({theme}) => theme.colors.primary};
+  outline:none;
+  letter-spacing:1px;
+`;
 class SearchForm extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +30,6 @@ class SearchForm extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleKeyUp = this.handleKeyUp.bind(this);
   }
 
   handleSubmit(e) {
@@ -24,11 +42,6 @@ class SearchForm extends Component {
       value: value
     });
     this.getData(value);
-  }
-  handleKeyUp() {
-    if (this.state.value === "") {
-      document.getElementById("results").toggleClass("noDisplay");
-    }
   }
 
   getData(value) {
@@ -46,17 +59,23 @@ class SearchForm extends Component {
   }
   render() {
     return (
-      <form onSubmit={this.handleSubmit} id="form">
-        <input
-          type="text"
-          value={this.state.value}
-          onChange={this.handleChange}
-          onKeyUp={this.handleKeyUp}
-          className="inputSearch"
-          id="input"
-        />
-        <SearchResults value={this.state.value} results={this.state.results} />
-      </form>
+      <ContainWrapper>
+        <FormStyled onSubmit={this.handleSubmit} id="form">
+          <InputStyled
+            type="text"
+            value={this.state.value}
+            onChange={this.handleChange}
+            onKeyUp={this.handleKeyUp}
+            className="inputSearch"
+            id="input"
+            placeholder="What you looking for?"
+          />
+          <SearchResults
+            value={this.state.value}
+            results={this.state.results}
+          />
+        </FormStyled>
+      </ContainWrapper>
     );
   }
 }

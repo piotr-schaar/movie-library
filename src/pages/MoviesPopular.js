@@ -3,7 +3,7 @@ import MoviesItem from "../components/movies/MoviesItem";
 import Header from "../components/header/Header";
 import axios from "axios";
 import Layout from "../layout/Layout";
-import {ContainWrapper} from '../layout/wrappers'
+import {ContainWrapper} from '../layout/wrappers';
 import {MovieList} from "../components/lists/lists";
 class MoviesRated extends Component {
   constructor(props) {
