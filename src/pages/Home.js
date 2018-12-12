@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import Header from "../components/header/Header";
 import MoviesNew from "./MoviesNew";
-import Layout from '../layout/Layout';
+import Layout from "../layout/Layout";
+
+
 class Home extends Component {
   constructor() {
     super();
@@ -9,13 +11,15 @@ class Home extends Component {
       isHome: true
     };
   }
+  
   render() {
+   
+    
     return (
       <>
         <Layout>
           <Header />
-          {/* <SearchForm /> */}
-          <MoviesNew isHome={this.state.isHome} />
+          <MoviesNew isHome = {this.state.isHome} />
         </Layout>
       </>
     );
