@@ -26,6 +26,9 @@ class HeaderNav extends Component {
         <LiStyled>
           <Link to={"/genres"}>Genres</Link>
         </LiStyled>
+        <LiStyled>
+          <Link to={"/search"}>Find movie</Link>
+        </LiStyled>
       </NavStyled>
     );
   }

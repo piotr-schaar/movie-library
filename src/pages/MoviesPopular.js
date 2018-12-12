@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-import MoviesItem from "./MoviesItem";
-import Header from "../header/Header";
+import MoviesItem from "../components/movies/MoviesItem";
+import Header from "../components/header/Header";
 import axios from "axios";
-import Layout from "../../layout/Layout";
-import {MovieList} from "../lists/lists";
-
-import { ContainWrapper } from "../../layout/wrappers";
-
+import Layout from "../layout/Layout";
+import {ContainWrapper} from '../layout/wrappers'
+import {MovieList} from "../components/lists/lists";
 class MoviesRated extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +16,7 @@ class MoviesRated extends Component {
   }
   getData() {
     const key = "bd5f28af222edabf18f21f9cf5683cca";
-    let url = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&certification_country=US&certification=R&sort_by=vote_average.desc&vote_count.gte=10000`;
+    let url = `https://api.themoviedb.org/3/discover/movie?api_key=${key}&sort_by=popularity.desc`;
 
     axios
       .get(url)
@@ -46,7 +44,7 @@ class MoviesRated extends Component {
       <Layout>
         <ContainWrapper>
           <Header />
-          <div className="movies moviesRated">
+          <div className="movies moviesPopular">
             <MovieList>
               {this.state.movies.map((movie, index) => {
                 return (

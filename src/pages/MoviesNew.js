@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
-import MoviesItem from "./MoviesItem";
-import Header from "../header/Header";
-import Layout from "../../layout/Layout";
-import {MovieList} from "../lists/lists";
-import {ContainWrapper} from '../../layout/wrappers'
+import MoviesItem from "../components/movies/MoviesItem";
+import Header from "../components/header/Header";
+import Layout from "../layout/Layout";
+import {MovieList} from "../components/lists/lists";
+import {ContainWrapper} from '../layout/wrappers'
 class NewMovies extends Component {
   constructor(props) {
     super(props);

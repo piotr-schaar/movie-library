@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import Header from "./header/Header";
-import MoviesNew from "./movies/MoviesNew";
-import SearchForm from "./search/SearchForm";
+import Header from "../components/header/Header";
+import MoviesNew from "./MoviesNew";
 import Layout from '../layout/Layout';
 class Home extends Component {
   constructor() {

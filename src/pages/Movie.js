@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Header from "../header/Header";
-import MovieCast from "./MovieCast";
-import SearchForm from "../search/SearchForm";
-import Layout from "../../layout/Layout";
+import Header from "../components/header/Header";
+import MovieCast from "../components/movie/MovieCast";
+import Layout from "../layout/Layout";
 import styled from "styled-components";
 
-import { ContainWrapper } from "../../layout/wrappers";
+import { ContainWrapper } from "../layout/wrappers";
 const MovieStyled = styled.div`
   display: flex;
 `;
@@ -37,7 +36,14 @@ const Rating = styled.div`
     top:1rem;
     right:0;
 `;
-const Img = styled.img``;
+const Para = styled.p`
+  padding: 10px 0;
+  line-height: 2rem;
+  font-weight: ${({ theme }) => theme.font.regular};
+`;
+const Img = styled.img`
+  max-height: 450px;
+`;
 class Movie extends Component {
   constructor(props) {
     super(props);
@@ -110,8 +116,8 @@ class Movie extends Component {
                   <Rating>{this.state.movie.vote_average}</Rating>
                   <LiStyled>Vote Count: {this.state.movie.vote_count}</LiStyled>
                   <LiStyled>
-                    Genres: <space></space>
-                     {this.state.movie.genres.map((element, index) => {
+                    Genres: <space />
+                    {this.state.movie.genres.map((element, index) => {
                       if (index < this.state.movie.genres.length - 1) {
                         return this.state.movie.genres[index].name + ", ";
                       } else {
@@ -120,7 +126,7 @@ class Movie extends Component {
                     })}
                   </LiStyled>
                 </ul>
-                <p>{this.state.movie.overview}</p>
+                <Para>{this.state.movie.overview}</Para>
               </MovieInfo>
             </MovieStyled>
 

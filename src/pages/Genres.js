@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Header from "../header/Header";
+import Header from "../components/header/Header";
 import { Link } from "react-router-dom";
-import { ContainWrapper } from "../../layout/wrappers";
-import Layout from "../../layout/Layout";
+import { ContainWrapper } from "../layout/wrappers";
+import Layout from "../layout/Layout";
 import styled from "styled-components";
 
 const GenresList = styled.ul `

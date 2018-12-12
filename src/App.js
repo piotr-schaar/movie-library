@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Home from "./components/Home";
-import Movie from "./components/movie/Movie";
-import MoviesRated from "./components/movies/MoviesRated";
-import MoviesPopular from "./components/movies/MoviesPopular";
-import MoviesNew from './components/movies/MoviesNew';
-import Genres from "./components/genres/Genres";
+import Home from "./pages/Home";
+import Movie from "./pages/Movie";
+import MoviesRated from "./pages/MoviesRated";
+import MoviesPopular from "./pages/MoviesPopular";
+import MoviesNew from './pages/MoviesNew';
+import Genres from "./pages/Genres";
 import Genre from "./components/genres/Genre";
+import Search from './pages/Search';
 class App extends Component {
   render() {
     return (
@@ -19,7 +20,7 @@ class App extends Component {
           <Route path={"/popular-movies"} component={MoviesPopular} />
           <Route path={"/genres"} component={Genres} />
           <Route path={"/genre/:name"} component={Genre} />
-
+          <Route path={"/search"} component={Search} />
         </Switch>
       </BrowserRouter>
     );
