@@ -38,7 +38,6 @@ class MovieCast extends Component {
   render() {
     const link = "https://image.tmdb.org/t/p/w300";
     const cast = this.props.cast;
-    console.log(cast);
     return (
       <UlStyled>
         {cast.slice(0, 10).map((el, index) => {

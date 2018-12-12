@@ -33,7 +33,6 @@ class Genres extends Component {
       .then(res => res.data.genres)
       .then(
         result => {
-          console.log(result);
           this.setState({
             isLoaded: true,
             genres: result
