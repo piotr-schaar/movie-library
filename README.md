@@ -1,1 +1,1 @@
-[Live version](movie-library-pschaar.netlify.com)
+Live version: https://movie-library-pschaar.netlify.com
