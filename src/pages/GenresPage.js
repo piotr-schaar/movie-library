@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Header from "../components/header/Header";
 import { Link } from "react-router-dom";
-import { ContainWrapper } from "../layout/wrappers";
-import Layout from "../layout/Layout";
 import styled from "styled-components";
 
 const GenresList = styled.ul `
@@ -15,7 +12,7 @@ const Genre = styled.li `
   padding: 20px;
   border: 2px solid ${({theme})=> theme.colors.primary}
 `
-class Genres extends Component {
+class GenresPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,8 +22,7 @@ class Genres extends Component {
     };
   }
   getData() {
-    const key = "bd5f28af222edabf18f21f9cf5683cca";
-    let url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${key}&language=en-US`;
+    let url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`;
 
     axios
       .get(url)
@@ -51,9 +47,6 @@ class Genres extends Component {
   }
   render() {
     return (
-      <Layout>
-        <ContainWrapper>
-          <Header />
             <GenresList>
               {this.state.genres.map((genre, index) => {
                 return (
@@ -68,10 +61,8 @@ class Genres extends Component {
                 );
               })}
             </GenresList>
-        </ContainWrapper>
-      </Layout>
     );
   }
 }
 
-export default Genres;
+export default GenresPage;

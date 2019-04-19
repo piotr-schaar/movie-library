@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Header from "../components/header/Header";
-import MovieCast from "../components/movie/MovieCast";
-import Layout from "../layout/Layout";
+import MovieCast from "../components/MovieCast/MovieCast";
 import styled from "styled-components";
 
-import { ContainWrapper } from "../layout/wrappers";
 const MovieStyled = styled.div`
   display: flex;
 `;
@@ -59,10 +56,12 @@ class Movie extends Component {
       }
     };
   }
+
   getData() {
-    const key = "bd5f28af222edabf18f21f9cf5683cca";
     let id = window.location.pathname.split("/").pop();
-    let url = `https://api.themoviedb.org/3/movie/${id}?api_key=${key}&language=en-US&append_to_response=credits`;
+    let url = `https://api.themoviedb.org/3/movie/${id}?api_key=${
+      process.env.REACT_APP_API_KEY
+    }&language=en-US&append_to_response=credits`;
 
     axios
       .get(url)
@@ -95,44 +94,39 @@ class Movie extends Component {
   render() {
     return (
       <>
-        <Layout>
-          <Header />
-          <ContainWrapper>
-            <MovieStyled>
-              <Img
-                src={
-                  this.state.movie.poster_path === null
-                    ? "http://via.placeholder.com/300x450"
-                    : `https://image.tmdb.org/t/p/w300${
-                        this.state.movie.poster_path
-                      }`
-                }
-                alt={`${this.state.movie.title} poster`}
-                className="movie_poster"
-              />
-              <MovieInfo>
-                <H3>{this.state.movie.title}</H3>
-                <ul>
-                  <Rating>{this.state.movie.vote_average}</Rating>
-                  <LiStyled>Vote Count: {this.state.movie.vote_count}</LiStyled>
-                  <LiStyled>
-                    Genres:
-                    {this.state.movie.genres.map((element, index) => {
-                      if (index < this.state.movie.genres.length - 1) {
-                        return this.state.movie.genres[index].name + ", ";
-                      } else {
-                        return this.state.movie.genres[index].name;
-                      }
-                    })}
-                  </LiStyled>
-                </ul>
-                <Para>{this.state.movie.overview}</Para>
-              </MovieInfo>
-            </MovieStyled>
+        <MovieStyled>
+          <Img
+            src={
+              this.state.movie.poster_path === null
+                ? "http://via.placeholder.com/300x450"
+                : `https://image.tmdb.org/t/p/w300${
+                    this.state.movie.poster_path
+                  }`
+            }
+            alt={`${this.state.movie.title} poster`}
+            className="movie_poster"
+          />
+          <MovieInfo>
+            <H3>{this.state.movie.title}</H3>
+            <ul>
+              <Rating>{this.state.movie.vote_average}</Rating>
+              <LiStyled>Vote Count: {this.state.movie.vote_count}</LiStyled>
+              <LiStyled>
+                Genres:
+                {this.state.movie.genres.map((element, index) => {
+                  if (index < this.state.movie.genres.length - 1) {
+                    return this.state.movie.genres[index].name + ", ";
+                  } else {
+                    return this.state.movie.genres[index].name;
+                  }
+                })}
+              </LiStyled>
+            </ul>
+            <Para>{this.state.movie.overview}</Para>
+          </MovieInfo>
+        </MovieStyled>
 
-            <MovieCast cast={this.state.movie.credits.cast} />
-          </ContainWrapper>
-        </Layout>
+        <MovieCast cast={this.state.movie.credits.cast} />
       </>
     );
   }

@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import Header from "../header/Header";
-import MovieItem from "../movies/MoviesItem";
+import MovieItem from "../MoviesItem/MoviesItem";
 import axios from "axios";
-import { ContainWrapper } from "../../layout/wrappers";
 import Layout from "../../layout/Layout";
 class Genre extends Component {
   constructor(props) {
@@ -30,21 +28,18 @@ class Genre extends Component {
   render() {
     return (
       <Layout>
-        <Header />
-        <ContainWrapper>
-          <ul>
-            {this.state.movies.map((movie, index) => {
-              return (
-                <MovieItem
-                  index={index}
-                  key={index}
-                  movie={movie}
-                  movies={this.state.movies}
-                />
-              );
-            })}
-          </ul>
-        </ContainWrapper>
+        <ul>
+          {this.state.movies.map((movie, index) => {
+            return (
+              <MovieItem
+                index={index}
+                key={index}
+                movie={movie}
+                movies={this.state.movies}
+              />
+            );
+          })}
+        </ul>
       </Layout>
     );
   }

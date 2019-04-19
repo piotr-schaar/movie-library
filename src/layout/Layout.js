@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
+import Header from "../components/Header/Header";
 import { theme } from "../utilis/theme";
 
 const GlobalStyle = createGlobalStyle`
@@ -25,11 +26,14 @@ const StyledWrapper = styled.div`
   min-height: 100vh;
 `;
 
-const Layout = ({ children }) => (
+const Layout = ({ children, isHome }) => (
   <ThemeProvider theme={theme}>
     <>
       <GlobalStyle />
-      <StyledWrapper>{children}</StyledWrapper>
+      <StyledWrapper>
+        <Header />
+        {children}
+      </StyledWrapper>
     </>
   </ThemeProvider>
 );

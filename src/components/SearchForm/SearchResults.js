@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { MovieList } from "../lists/lists";
-import MoviesItem from "../movies/MoviesItem";
+import { MovieList } from "../List/Lists";
+import MoviesItem from "../MoviesItem/MoviesItem";
 
 class SearchResults extends Component {
   render() {

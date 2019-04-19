@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import HeaderNav from "./HeaderNav/HeaderNav";
+import Navigation from "../Navigation/Navigation";
 import styled from "styled-components";
 import { ContainWrapper } from "../../layout/wrappers";
 
@@ -25,7 +25,7 @@ class Header extends Component {
           <Link to={"/"}>
             <H1>Movie Library</H1>
           </Link>
-          <HeaderNav />
+          <Navigation />
         </HeaderStyled>
       </ContainWrapper>
     );
