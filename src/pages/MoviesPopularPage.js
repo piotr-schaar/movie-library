@@ -1,61 +1,48 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import MoviesItem from "../components/MoviesItem/MoviesItem";
 import axios from "axios";
 import { MovieList } from "../components/List/Lists";
 
+const MoviesRatedPage = () => {
+  const [error, setError] = useState(null);
+  const [isLoaded, setLoaded] = useState(false);
+  const [movies, setMovies] = useState([]);
 
-class MoviesRated extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null,
-      isLoaded: true,
-      movies: []
-    };
-  }
-  getData() {
-    const key = "bd5f28af222edabf18f21f9cf5683cca";
-    let url = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&sort_by=popularity.desc`;
-
+  useEffect(() => {
+    let url = `https://api.themoviedb.org/3/discover/movie?api_key=${
+      process.env.REACT_APP_API_KEY
+    }&sort_by=popularity.desc`;
     axios
       .get(url)
       .then(res => res.data.results)
       .then(
         result => {
-          this.setState({
-            isLoaded: true,
-            movies: result
-          });
+          setLoaded(true);
+          setMovies(result);
         },
         error => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
+          setLoaded(true);
+          setError(error);
         }
       );
-  }
-  componentDidMount() {
-    this.getData();
-  }
-  render() {
-    return (
-      <div className="movies moviesPopular">
-        <MovieList>
-          {this.state.movies.map((movie, index) => {
-            return (
-              <MoviesItem
-                key={index}
-                movie={movie}
-                index={index}
-                movies={this.state.movies}
-              />
-            );
-          })}
-        </MovieList>
-      </div>
-    );
-  }
-}
+  }, []);
 
-export default MoviesRated;
+  return (
+    <div className="movies moviesPopular">
+      <MovieList>
+        {movies.map((movie, index) => {
+          return (
+            <MoviesItem
+              key={index}
+              movie={movie}
+              index={index}
+              movies={movies}
+            />
+          );
+        })}
+      </MovieList>
+    </div>
+  );
+};
+
+export default MoviesRatedPage;

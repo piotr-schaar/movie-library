@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import MovieCast from "../components/MovieCast/MovieCast";
 import styled from "styled-components";
@@ -41,23 +41,15 @@ const Para = styled.p`
 const Img = styled.img`
   max-height: 450px;
 `;
-class Movie extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoaded: false,
-      error: null,
-      movie: {
-        title: this.title,
-        genres: [],
-        credits: {
-          cast: []
-        }
-      }
-    };
-  }
 
-  getData() {
+const MoviePage = () => {
+  const [isLoaded, setLoaded] = useState(false);
+  const [error, setError] = useState(null);
+  const [movie, setMovie] = useState({});
+  const [genres, setGenres] = useState([]);
+  const [cast, setCast] = useState([]);
+
+  useEffect(() => {
     let id = window.location.pathname.split("/").pop();
     let url = `https://api.themoviedb.org/3/movie/${id}?api_key=${
       process.env.REACT_APP_API_KEY
@@ -69,67 +61,54 @@ class Movie extends Component {
       .then(
         result => {
           const movie = result;
-          this.setState({ movie });
-          this.setState({
-            isLoaded: true
-          });
+          setMovie(movie);
+          setLoaded(true);
+          setGenres(movie.genres);
+          setCast(movie.credits.cast);
         },
         error => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
+          setLoaded(true);
+          setError(true);
         }
       );
-  }
-  com;
-  componentDidMount() {
-    this.getData();
-  }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.movie !== this.state.movie) {
-      this.getData();
-    }
-  }
-  render() {
-    return (
-      <>
-        <MovieStyled>
-          <Img
-            src={
-              this.state.movie.poster_path === null
-                ? "http://via.placeholder.com/300x450"
-                : `https://image.tmdb.org/t/p/w300${
-                    this.state.movie.poster_path
-                  }`
-            }
-            alt={`${this.state.movie.title} poster`}
-            className="movie_poster"
-          />
-          <MovieInfo>
-            <H3>{this.state.movie.title}</H3>
-            <ul>
-              <Rating>{this.state.movie.vote_average}</Rating>
-              <LiStyled>Vote Count: {this.state.movie.vote_count}</LiStyled>
-              <LiStyled>
-                Genres:
-                {this.state.movie.genres.map((element, index) => {
-                  if (index < this.state.movie.genres.length - 1) {
-                    return this.state.movie.genres[index].name + ", ";
-                  } else {
-                    return this.state.movie.genres[index].name;
-                  }
-                })}
-              </LiStyled>
-            </ul>
-            <Para>{this.state.movie.overview}</Para>
-          </MovieInfo>
-        </MovieStyled>
+  }, {});
 
-        <MovieCast cast={this.state.movie.credits.cast} />
-      </>
-    );
-  }
-}
-
-export default Movie;
+  const {
+    title,
+    poster_path: poster,
+    vote_average,
+    vote_count,
+    overview
+  } = movie;
+  return (
+    <>
+      <MovieStyled>
+        <Img
+          src={
+            poster === null
+              ? "http://via.placeholder.com/300x450"
+              : `https://image.tmdb.org/t/p/w300${poster}`
+          }
+          alt={`${title} poster`}
+          className="movie_poster"
+        />
+        <MovieInfo>
+          <H3>{title}</H3>
+          <ul>
+            <Rating>{vote_average}</Rating>
+            <LiStyled>Vote Count: {vote_count}</LiStyled>
+            <LiStyled>
+              Genres:
+              {genres.map(genre => {
+                return <p>{genre.name}</p>;
+              })}
+            </LiStyled>
+          </ul>
+          <Para>{overview}</Para>
+        </MovieInfo>
+      </MovieStyled>
+      <MovieCast cast={cast} />
+    </>
+  );
+};
+export default MoviePage;

@@ -1,14 +1,10 @@
-import React, { Component } from "react";
-import MoviesNew from "./MoviesNew";
+import React from "react";
+import MoviesNewsPage from "./MoviesNewsPage";
 
-class Home extends Component {
-  render() {
-    return (
-      <>
-        <MoviesNew />
-      </>
-    );
-  }
-}
+const Home = () => (
+  <>
+    <MoviesNewsPage />
+  </>
+);
 
 export default Home;

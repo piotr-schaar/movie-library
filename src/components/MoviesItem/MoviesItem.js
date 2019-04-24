@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { MovieListItem } from "../List/Lists";
 import styled from "styled-components";
@@ -32,30 +32,36 @@ const Rating = styled.div`
     top:1rem;
     right:0;
 `;
-class MoviesItem extends Component {
-  render() {
-    const { index, movies } = this.props;
-    return (
-      <MovieListItem>
-        <Link to={`/movie/${movies[index].id}`} key={index}>
-          <Img
-            src={
-              movies[index].poster_path === null
-                ? "http://via.placeholder.com/300x450"
-                : `https://image.tmdb.org/t/p/w300/${movies[index].poster_path}`
-            }
-            alt={``}
-          />
-          <MovieListItemInfo>
-            <H3>{movies[index].title}</H3>
-            <Para>Release date: {movies[index].release_date}</Para>
-            <Para>{movies[index].overview}</Para>
-            <Rating>{movies[index].vote_average}</Rating>
-          </MovieListItemInfo>
-        </Link>
-      </MovieListItem>
-    );
-  }
-}
+
+const MoviesItem = ({ index, movies }) => {
+  const {
+    id,
+    poster_path,
+    title,
+    release_date,
+    overview,
+    vote_average
+  } = movies[index];
+  return (
+    <MovieListItem>
+      <Link to={`/movie/${id}`} key={id}>
+        <Img
+          src={
+            poster_path === null
+              ? "http://via.placeholder.com/300x450"
+              : `https://image.tmdb.org/t/p/w300/${poster_path}`
+          }
+          alt={``}
+        />
+        <MovieListItemInfo>
+          <H3>{title}</H3>
+          <Para>Release date: {release_date}</Para>
+          <Para>{overview}</Para>
+          <Rating>{vote_average}</Rating>
+        </MovieListItemInfo>
+      </Link>
+    </MovieListItem>
+  );
+};
 
 export default MoviesItem;
