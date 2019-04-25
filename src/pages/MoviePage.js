@@ -3,10 +3,10 @@ import axios from "axios";
 import MovieCast from "../components/MovieCast/MovieCast";
 import styled from "styled-components";
 
-const MovieStyled = styled.div`
+const MovieWrapper = styled.div`
   display: flex;
 `;
-const MovieInfo = styled.div`
+const MovieInfoWrapper = styled.div`
   padding: 25px;
   position: relative;
 `;
@@ -82,7 +82,7 @@ const MoviePage = () => {
   } = movie;
   return (
     <>
-      <MovieStyled>
+      <MovieWrapper>
         <Img
           src={
             poster === null
@@ -92,7 +92,7 @@ const MoviePage = () => {
           alt={`${title} poster`}
           className="movie_poster"
         />
-        <MovieInfo>
+        <MovieInfoWrapper>
           <H3>{title}</H3>
           <ul>
             <Rating>{vote_average}</Rating>
@@ -105,8 +105,8 @@ const MoviePage = () => {
             </LiStyled>
           </ul>
           <Para>{overview}</Para>
-        </MovieInfo>
-      </MovieStyled>
+        </MovieInfoWrapper>
+      </MovieWrapper>
       <MovieCast cast={cast} />
     </>
   );

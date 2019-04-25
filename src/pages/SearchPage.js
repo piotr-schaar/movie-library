@@ -1,14 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import SearchForm from "../components/SearchForm/SearchForm";
 
-class Search extends Component {
-  render() {
-    return (
-      <>
-        <SearchForm />
-      </>
-    );
-  }
-}
+const SearchPage = () => (
+  <>
+    <SearchForm />
+  </>
+);
 
-export default Search;
+export default SearchPage;

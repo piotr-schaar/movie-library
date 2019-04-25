@@ -26,7 +26,7 @@ const StyledWrapper = styled.div`
   min-height: 100vh;
 `;
 
-const Layout = ({ children, isHome }) => (
+const Layout = ({ children }) => (
   <ThemeProvider theme={theme}>
     <>
       <GlobalStyle />

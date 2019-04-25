@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import SearchResults from "./SearchResults";
 import styled from "styled-components";
@@ -16,67 +16,47 @@ const InputStyled = styled.input`
   color: ${({ theme }) => theme.colors.primary};
   font-weight: ${({ theme }) => theme.font.bold};
   background: none;
-  border-bottom: 2px solid ${({theme}) => theme.colors.primary};
-  outline:none;
-  letter-spacing:1px;
+  border-bottom: 2px solid ${({ theme }) => theme.colors.primary};
+  outline: none;
+  letter-spacing: 1px;
 `;
-class SearchForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: "",
-      results: [],
-      showResults: false
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
 
-  handleSubmit(e) {
-    e.preventDefault();
-  }
+const SearchForm = () => {
+  const [value, setValue] = useState("");
+  const [results, getResults] = useState([]);
 
-  handleChange(e) {
-    const value = e.target.value;
-    this.setState({
-      value: value
-    });
-    this.getData(value);
-  }
+  const handleChange = e => {
+    setValue(e.target.value);
+    getDataResults(value);
+  };
 
-  getData(value) {
-    let url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=${value}&page=1&include_adult=false`;
-
+  const getDataResults = value => {
+    let url = `https://api.themoviedb.org/3/search/movie?api_key=${
+      process.env.REACT_APP_API_KEY
+    }&language=en-US&query=${value}&page=1&include_adult=false`;
     axios
       .get(url)
       .then(res => res.data.results)
       .then(result => {
-        this.setState({
-          results: result
-        });
+        getResults(result);
       });
-  }
-  render() {
-    return (
-      <ContainWrapper>
-        <FormStyled onSubmit={this.handleSubmit} id="form">
-          <InputStyled
-            type="text"
-            value={this.state.value}
-            onChange={this.handleChange}
-            onKeyUp={this.handleKeyUp}
-            className="inputSearch"
-            id="input"
-            placeholder="What you looking for?"
-          />
-          <SearchResults
-            value={this.state.value}
-            results={this.state.results}
-          />
-        </FormStyled>
-      </ContainWrapper>
-    );
-  }
-}
+  };
+  return (
+    <ContainWrapper>
+      <FormStyled id="form">
+        <InputStyled
+          type="text"
+          value={value}
+          onChange={handleChange}
+          className="inputSearch"
+          id="input"
+          placeholder="What you looking for?"
+        />
+        <SearchResults value={value} results={results} />
+      </FormStyled>
+    </ContainWrapper>
+  );
+};
+
 
 export default SearchForm;
